@@ -1,6 +1,14 @@
 from flask import Flask, jsonify
+from repository.database import db
 
 app = Flask(__name__)
+
+app.config['SECRET_KEY'] = "FLASK_SECRET_KEY"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:postgres@localhost:5434/module_cinco_websockets"
+
+db.init_app(app)
+
+
 
 
 @app.route('/payments/pix', methods=['POST'])
